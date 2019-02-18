@@ -49,8 +49,8 @@ install:
   - env MPICC=$MPI_CC pip install mpi4py
 
 script:
-  - MPI_EXEC -n 1 ./hello
-  - MPI_EXEC -n 2 ./hello
-  - MPI_EXEC -n 1 pipenv run python hello_mpi.py
-  - MPI_EXEC -n 2 pipenv run python hello_mpi.py
+  - $MPI_EXEC -n 1 ./hello
+  - $MPI_EXEC -n 2 ./hello
+  - $MPI_EXEC -n 1 pipenv run python hello_mpi.py
+  - $MPI_EXEC -n 2 pipenv run python hello_mpi.py
 
