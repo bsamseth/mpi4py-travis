@@ -3,20 +3,21 @@ dist: xenial
 notifications:
   email: false
 
-- os: linux
-  addons:
-    apt:
-      sources:
-        - deadsnakes
-        - ubuntu-toolchain-r-test
-      packages:
-        - python3.7-dev
-        - gcc-7, g++-7
-        - libopenmpi-dev, openmpi-bin, libhdf5-openmpi-dev
-  env:
-    - C_COMPILER="gcc-7"
-    - CXX_COMPILER="g++-7"
 
+matrix:
+  include:
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - deadsnakes
+            - ubuntu-toolchain-r-test
+          packages:
+            - python3.7-dev
+            - g++-7
+            - libopenmpi-dev, openmpi-bin, libhdf5-openmpi-dev
+      env:
+        - C_COMPILER="gcc-7", CXX_COMPILER="g++-7"
 
 before_install:
   - pyenv global $(pyenv whence 2to3)
