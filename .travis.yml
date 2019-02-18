@@ -31,7 +31,7 @@ before_install:
 
 install:
   # Non-cached builds can take some time. Tell Travis not to time out (30 min should be plenty).
-  - travis_wait 30 source ci/install-openmpi.sh
+  - source ci/install-openmpi.sh
   - echo $MPI_CC
   - echo $MPI_CXX
   - echo $MPI_EXEC

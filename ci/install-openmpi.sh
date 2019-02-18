@@ -25,7 +25,7 @@ else
     export CC=$C_COMPILER
     export CXX=$CXX_COMPILER
     ./configure --prefix=$MPI_BUILD_DIR &> config.log
-    make -j3 &> make.log
+    make -j3
     make install &> make-install.log
     cd ..
 fi
