@@ -1,7 +1,14 @@
 #include <iostream>
 #include <mpi.h>
 
+constexpr bool its_true = true;
+
 int main() {
+
+    // Just to ensure C++17 compiler works.
+    if constexpr (!its_true)
+        printf("Bad news, C++ is broken\n");
+
     MPI_Init(NULL, NULL);
 
     int world_size;
