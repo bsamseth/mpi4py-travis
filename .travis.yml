@@ -3,10 +3,11 @@ dist: xenial
 notifications:
   email: false
 
-cache:
+cache: 
   directories:
     - $TRAVIS_BUILD_DIR/openmpi-build
     - $TRAVIS_BUILD_DIR/openmpi-3.1.3
+    - $TRAVIS_BUILD_DIR/.cache/pip
 
 matrix:
   include:
