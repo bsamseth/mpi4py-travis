@@ -4,18 +4,20 @@
 # MPI_FULL_VERSION="3.1.3" or some other supported version.
 # C_COMPILER="path to C compiler to use for mpicc"
 # CXX_COMPILER="path to C++ compiler to use for mpic++"
+#
+# After sourcing this script, the following variables will be set/altered:
+# MPI_CC : Path to MPI C compiler
+# MPI_CXX : Path to MPI C++ compiler
+# MPI_EXEC : Path to the corresponding mpiexec launcher
 
 CC_OLD=$CC
 CXX_OLD=$CXX
 export CC=$C_COMPILER
 export CXX=$CXX_COMPILER
 
+# Check to see if we have a cached build from earlier.
 if [ -f "$MPI_BUILD_DIR/bin/mpiexec" ] && [ -f "openmpi-$MPI_FULL_VERSION/config.log" ]; then
     echo "Using cached OpenMPI"
-    echo "Configuring OpenMPI"
-    cd openmpi-$MPI_FULL_VERSION
-    ./configure --prefix=$MPI_BUILD_DIR &> config.log
-    cd ..
 else
     echo "Downloading OpenMPI Source"
     wget https://download.open-mpi.org/release/open-mpi/v$MPI_VERSION/openmpi-$MPI_FULL_VERSION.tar.gz
@@ -26,7 +28,7 @@ else
     export CC=$C_COMPILER
     export CXX=$CXX_COMPILER
     ./configure --prefix=$MPI_BUILD_DIR &> config.log
-    make -j3
+    make -j3  # Produce output so that Travis doesn't halt after 10 min.
     make install &> make-install.log
     cd ..
 fi
