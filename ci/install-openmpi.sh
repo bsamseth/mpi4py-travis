@@ -15,6 +15,7 @@ if [ -f "$MPI_BUILD_DIR/bin/mpiexec" ] && [ -f "openmpi-$MPI_FULL_VERSION/config
     echo "Configuring OpenMPI"
     cd openmpi-$MPI_FULL_VERSION
     ./configure --prefix=$MPI_BUILD_DIR &> config.log
+    cd ..
 else
     echo "Downloading OpenMPI Source"
     wget https://download.open-mpi.org/release/open-mpi/v$MPI_VERSION/openmpi-$MPI_FULL_VERSION.tar.gz
